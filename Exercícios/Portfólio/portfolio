@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Portfolio</title>
+    <title>Portfólio</title>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="auxport.css">
 </head>
 <body>
     <form>
         <center>
-            <table cellspacing="0" border="10" id="table">
+            <table cellspacing="0" border="10">
                 <th colspan="2" class="titulo"><h1>Portfólio</h1></th>
                 <tr class="linha">
                     <td class="imagem">
