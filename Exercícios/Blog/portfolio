@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Portfólio</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="auxport.css">
+</head>
+<body>
+    <form>
+        <center>
+            <table cellspacing="0" border="10">
+                <th colspan="2" class="titulo"><h1>Portfólio</h1></th>
+                <tr class="linha">
+                    <td class="imagem">
+                        <img src="imagem1.png" height="230px" width="340px">
+                    </td>
+                    <td class="texto">
+                        <h3>Projeto A</h3>
+                        <h4>Site</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vulputate feugiat ex, a elementum turpis rutrum vel. Aenean lacus dui, facilisis at arcu eu, auctor porttitor augue. Fusce dolor tellus, euismod id sapien ut, hendrerit congue ex. Praesent ligula velit, laoreet vulputate auctor nec, iaculis sit amet ante. Ut dapibus ornare leo ut sollicitudin. Curabitur sed facilisis metus, in mollis tortor. Mauris in congue est, non varius ipsum. Ut cursus ipsum vitae justo euismod, at laoreet nulla venenatis. Phasellus ultrices lectus id turpis suscipit, maximus consectetur enim rutrum.
+                        </p>
+                        <a href="www.projetoA.com.br">www.projetoA.com.br</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="imagem">
+                        <img src="imagem2.png" height="230px" width="340px">
+                    </td>
+                    <td class="texto">
+                        <h3>Projeto B</h3>
+                        <h4>Site</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vulputate feugiat ex, a elementum turpis rutrum vel. Aenean lacus dui, facilisis at arcu eu, auctor porttitor augue. Fusce dolor tellus, euismod id sapien ut, hendrerit congue ex. Praesent ligula velit, laoreet vulputate auctor nec, iaculis sit amet ante. Ut dapibus ornare leo ut sollicitudin. Curabitur sed facilisis metus, in mollis tortor. Mauris in congue est, non varius ipsum. Ut cursus ipsum vitae justo euismod, at laoreet nulla venenatis. Phasellus ultrices lectus id turpis suscipit, maximus consectetur enim rutrum.
+                        </p>
+                        <a href="www.projetoB.com.br">www.projetoB.com.br</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="imagem">
+                        <img src="imagem3.png" height="230px" width="340px">
+                    </td>
+                    <td class="texto">
+                        <h3>Projeto C</h3>
+                        <h4">Site</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vulputate feugiat ex, a elementum turpis rutrum vel. Aenean lacus dui, facilisis at arcu eu, auctor porttitor augue. Fusce dolor tellus, euismod id sapien ut, hendrerit congue ex. Praesent ligula velit, laoreet vulputate auctor nec, iaculis sit amet ante. Ut dapibus ornare leo ut sollicitudin. Curabitur sed facilisis metus, in mollis tortor. Mauris in congue est, non varius ipsum. Ut cursus ipsum vitae justo euismod, at laoreet nulla venenatis. Phasellus ultrices lectus id turpis suscipit, maximus consectetur enim rutrum.
+                        </p>
+                        <a href="www.projetoC.com.br">www.projetoA.com.br</a>
+                    </td>
+                </tr>
+            </table>
+        </center>
+    </form>
+</body>
+</html>

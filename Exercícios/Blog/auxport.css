@@ -1,0 +1,17 @@
+.titulo{
+    padding: 30px;
+    padding-top: 10px;
+
+}
+.imagem{
+    height: 230px;
+    width: 340px;
+    vertical-align: center;
+    padding: 15px;
+}
+td{
+    vertical-align: top;
+}
+.texto{
+    width: 500px;
+}
