@@ -1,0 +1,30 @@
+body{
+    padding: 0;
+    border: 0;
+    margin: 0;
+    vertical-align: baseline;
+    font-family:"Arial",sans-serif;
+}
+.container{
+    background-image: url("mountain.jpg");
+    background-size: 100%;
+    color: #FFF;
+    text-align: center;
+    align-content:  center;
+}
+blockquote{
+    display: inline-flex;
+    width: 240px;
+    height: 40px;
+    justify-content:space-between;
+    align-items: center;
+}
+.bloco1{
+    background-color: #54B9B5;
+}
+.bloco2{
+    background-color: #F05B57;
+}
+.black{
+    color: #000;
+}
