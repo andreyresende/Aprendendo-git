@@ -1,5 +1,14 @@
-/*O código começa de fato na linha 62, até lá são linhas definindo especificações do trabalho.*/
-/* Detalhe na organização das funções: A ordem delas pode parecer confusa mas o objetivo dessa ordem é tirar os Warnings de 'Implicit Declaration' do terminal ao compilar */
+/* Universidade de Brasilia
+Instituto de Ciencias Exatas
+Departamento de Ciencia da Computacao
+Algoritmos e Programacao de Computadores – 1/2018
+Aluno(a): Andrey Calaca Resende
+Matricula: 180062433
+Turma: A
+Versao do compilador: gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.9)
+Descricao: O jogo acontece na ordem definida pela funcao Jogo, que e chamada pela Main, como explicado no comentario abaixo, as funcoes nao estao na melhor ordem para o entendimento, e sim para melhor compilacao, recomendo a leitura/correcao seguindo a ordem em que aparecem sendo chamadas pela funcao Jogo, mantendo sempre as variaveis globais em mente. */
+/*O codigo comeca de fato na linha 70, ate la sao linhas definindo especificacoes do trabalho.*/
+/* Detalhe na organizacao das funcoes: A ordem delas pode parecer confusa mas o objetivo dessa ordem e tirar os Warnings de 'Implicit Declaration' do terminal ao compilar */
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -58,7 +67,7 @@ int colisao = 0;
     #else
         #include <conio.h>
 #endif
-void welcome(){//Dá as boas-vindas ao player.
+void welcome(){//Da as boas-vindas ao player.
     int n;
     printf("Bem-Vindo ao River Raid, C Version =D.\nDigite 1 para continuar\n");
     scanf("%d",&n);
@@ -67,7 +76,7 @@ void welcome(){//Dá as boas-vindas ao player.
         scanf("%d",&n);
     }
 }
-void Opcao(int escolheu){//Funcao utilizada pela funcao Menu, no momento só funciona para instruções. Colocada antes no código para evitar Warnings no terminal, já que se ela for chamada por uma função antes de ser declarada ele reclama com "Implicit Declaration".
+void Opcao(int escolheu){//Funcao utilizada pela funcao Menu, no momento so funciona para instrucoes. Colocada antes no codigo para evitar Warnings no terminal, ja que se ela for chamada por uma funcao antes de ser declarada ele reclama com "Implicit Declaration".
     int jogar=0;
     switch (escolheu){
         case 2 ://Implementar depois
@@ -96,7 +105,7 @@ void Opcao(int escolheu){//Funcao utilizada pela funcao Menu, no momento só fun
             }
     }
 }
-void Menu(){//Basicamente da as opcoes, chamando a devida função, recusando comandos invalidos e limpando a tela
+void Menu(){//Basicamente da as opcoes, chamando a devida funcao, recusando comandos invalidos e limpando a tela
     int escolha;
     printf("1 - Jogar\n");
     printf("2 - Configuracoes\n");
@@ -144,7 +153,7 @@ void map(){//define o mapa e as bordas
         }
     }
 }
-void colidiu(){//Procura o personagem e verifica se houve uma colisão
+void colidiu(){//Procura o personagem e verifica se houve uma colisao
     int i=0;
     while(tabuleiro[i][0] != '+'){
         if(tabuleiro[i+1][0] == '+'){
@@ -158,9 +167,22 @@ void colidiu(){//Procura o personagem e verifica se houve uma colisão
         i++;
     }
 }
-void Arraste(){//Arrasta a matriz para a esquerda e monitora o funcionamento dos tiros.
+void movertiro(){//Move o tiro ne...e chamada a cada frame pela funcao Arraste
     int i, j;
     for(i=0;i<9;i++){
+        for(j=134;j>0;j--){
+            if(tabuleiro[i][j] == '>'){
+                tabuleiro[i][j+2] = '>';//+2 pra poder vencer o arraste, uma vez que a funcao tambem esta afetando o tiro
+                tabuleiro[i][j+1] = ' ';//Como o tiro esta pulando de 2 em 2 isso evita que ele pule o alvo e nao acerte
+                tabuleiro[i][j] = ' ';
+            }
+        }
+    }
+}
+void Arraste(){//Arrasta a matriz para a esquerda e monitora o funcionamento dos tiros.
+    int i, j;
+    movertiro();
+    for(i=0;i<10;i++){
         for(j=0;j<134;j++){
             if(tabuleiro[i][j] != '+'){
                 tabuleiro[i][j]=tabuleiro[i][j+1];
@@ -169,7 +191,7 @@ void Arraste(){//Arrasta a matriz para a esquerda e monitora o funcionamento dos
         }
     }
 }
-void show(){//printa o mapa na tela, é chamada a cada loop, depois da Arraste.
+void show(){//printa o mapa na tela, e chamada a cada loop, depois da Arraste.
     int i, j;
     printf("Combustivel: %d               Pontos: %d\n",combustivel,pontuacao);
     for(i=0;i<135;i++){
@@ -187,7 +209,16 @@ void show(){//printa o mapa na tela, é chamada a cada loop, depois da Arraste.
     }
     printf("\n");
 }
-void Mover(){//Move o personagem. Identifica quando uma tecla é pressionada e qual, depois procura o + e move.
+void QueTiroFoiEsse(){//Cria os tiros =D, e chamada no final da funcao Mover.
+    int i=0;
+    for(i=0;tabuleiro[i][0] != '+';i++){
+        if(tabuleiro[i+1][0] == '+'){
+            tabuleiro[i+1][1] = '>';
+            combustivel -= 2;//Note que o tiro retira 3 unidades de combustivel, pois a funcao jogo ja tira 1 a cada 'frame'.
+        }
+    }
+}
+void Mover(){//Move o personagem. Identifica quando uma tecla e pressionada e qual, depois procura o + e move.
     int i=0;
     char apertou;
     if(kbhit() == 1){
@@ -200,7 +231,7 @@ void Mover(){//Move o personagem. Identifica quando uma tecla é pressionada e q
                 i++;
             }
             tabuleiro[i][0] = ' ';
-            combustivel--;//Note que como a cada 'frame' um combustível já é retirado pela função Jogo, a ação de mover só precisa retirar mais 1 para que se tire 2 naquele frame.
+            combustivel--;//Note que como a cada 'frame' um combustivel ja e retirado pela funcao Jogo, a acao de mover so precisa retirar mais 1 para que se tire 2 naquele frame.
         }
         else if((apertou == 's' || apertou == 'S') && tabuleiro[0][0] == '+'){
             tabuleiro[0][0] = ' ';
@@ -216,29 +247,8 @@ void Mover(){//Move o personagem. Identifica quando uma tecla é pressionada e q
             tabuleiro[i][0] = ' ';
             combustivel--;
         }
-        else{
-            combustivel -= 2;//Punição, tira 2 de combustível extra por apertar uma tecla que não é um comando.
-        }
-    }
-}
-void QueTiroFoiEsse(){//Cria os tiros =D
-    int i=0, j=0;
-    char apertou;
-    if(kbhit() == 1){
-        apertou == getch();
-        if(apertou == 'd' || apertou == 'D'){
-            if(tabuleiro[0][0] == '+'){
-                tabuleiro[0][1] == '>';
-                combustivel -= 2;//Note que a cada "frame" um combustível já é retirado, portanto quando se atira, para perder 3, aqui só é necessário colocar 2.
-            }
-            else{
-                while(tabuleiro[i][0] != '+'){
-                    if(tabuleiro[i][0] == '+'){
-                        tabuleiro[i][1] = '>';
-                        combustivel -= 2;
-                    }
-                }
-            }
+        else if(apertou == 'd' || apertou == 'D'){
+            QueTiroFoiEsse();
         }
     }
 }
@@ -259,7 +269,7 @@ void Jogo(){//Realiza o jogo de fato
     printf("Pontuacao: %d\n",pontuacao );
 }
 int main(){
-    srand(time(0));
+    srand(time(0));//especificado pelo trabalho
     CLEAR;
     welcome();
     CLEAR;
