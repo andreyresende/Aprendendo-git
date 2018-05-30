@@ -26,7 +26,8 @@ int velocidade;
 int combustivel = 400;
 int pontuacao = 1;
 int colisao = 0;
-char vicio[100];//Serve para, ao final de cada jogo, verificar se o usuario deseja jogar novamente.Parte da solucao de um problema, explicada no comentario da linha 125
+int vicio = 1;//Serve para, ao final de cada jogo, verificar se o usuario deseja jogar novamente
+
 #ifdef _WIN32
     #define CLEAR system("cls");
 #else
@@ -68,16 +69,16 @@ char vicio[100];//Serve para, ao final de cada jogo, verificar se o usuario dese
         #include <conio.h>
 #endif
 void welcome(){//Da as boas-vindas ao player.
-    char n[100];//Parte da solucao de um problema, explicada no comentario da linha 125
+    char n;
     printf("Bem-Vindo ao River Raid, C Version =D.\nDigite 1 para continuar\n");
-    scanf("%s",n);
-    while(n[0] != '1'){
+    scanf("%c",&n);
+    while(n != 1){
         printf("Digite 1 e enter para continuar:\n");
-        scanf("%s",n);
+        scanf("%c",&n);
     }
 }
 void opcao(int escolheu){//Funcao utilizada pela funcao menu, no momento so funciona para instrucoes. Colocada antes no codigo para evitar Warnings no terminal, ja que se ela for chamada por uma funcao antes de ser declarada ele reclama com "Implicit Declaration".
-    char jogar[100];//Parte da solucao de um problema, explicada no comentario da linha 125
+    int jogar=0;
     switch (escolheu){
         case 2 ://Implementar depois
             break;
@@ -90,14 +91,14 @@ void opcao(int escolheu){//Funcao utilizada pela funcao menu, no momento so func
             printf("O seu tiro destroi tanto inimigos quanto combustivel, sendo que ao destruir um inimigo 50 ponto sao ganhos, entretanto, destruir um combustivel nao lhe proporciona nenhum beneficio.\n");
             printf("ATENCAO: Apertar alguma tecla que nao seja um comando subtrai 2 de combustivel.\n");
             printf("Digite 1 para jogar, ou 2 para sair: ");
-            scanf("%s",jogar);
+            scanf("%d",&jogar);
             printf("\n");
-            while(jogar[0] != '1' && jogar[0] != '2'){
+            while(jogar != 1 && jogar != 2){
                 printf("Valor invalido, digite 1 para jogar, ou 2 para sair: ");
-                scanf("%s",jogar);//Parte da solucao de um problema, explicada no comentario da linha 125
+                scanf("%d",&jogar);
                 printf("\n");
             }
-            if(jogar[0] == '2'){
+            if(jogar==2){
                 exit(0);
             }
             else{
@@ -107,24 +108,20 @@ void opcao(int escolheu){//Funcao utilizada pela funcao menu, no momento so func
     }
 }
 void menu(){//Basicamente da as opcoes, chamando a devida funcao, recusando comandos invalidos e limpando a tela
-    char escolha[100];//Parte da solucao de um problema, explicada no comentario da linha 125
-    int escolheu = 0;//Variavel usada na gambiarra abaixo
+    int escolha;
     printf("1 - Jogar\n");
     printf("2 - Configuracoes\n");
     printf("3 - Ranking\n");
     printf("4 - Instrucoes\n");
     printf("5 - Sair\n\n");
     printf("Escolha uma opcao: ");
-    scanf("%s",escolha);
-    while(escolha[0] != '1' && escolha[0] != '2' && escolha[0] != '3' && escolha[0] != '4' && escolha[0] != '5'){
-        printf("Opcao invalida, digite uma opcao valida : ");
-        scanf("%s",escolha);
+    scanf("%d",&escolha);
+    while(escolha != 1 && escolha != 2 && escolha != 3 && escolha != 4 && escolha != 5){
+        printf("opcao invalida, digite uma opcao valida : ");
+        scanf("%d",&escolha);
         printf("\n");
     }
-    if(escolha[0] == '4'){//Solucao para resolver um problema que surgia quando o usuario colocava um char ou uma string ao inves de um int. Basicamente se o tipo do input nao fosse int ele entrava em loop infinito. Essa gambiarra se repete em todas as partes do menu que exigem input
-        escolheu = 4;
-    }
-    switch (escolheu){
+    switch (escolha){
             case 1 :
                 CLEAR;
                 break;
@@ -324,17 +321,14 @@ void jogo(){//Realiza o jogo de fato
         printf("Sem combustivel\n");
     }
     printf("Deseja jogar novamente?\nDigite 0 para sair, ou 1 para jogar: ");
-    vicio[0] = '2';
-    scanf("%s",vicio);
-    while(vicio[0] != '0' && vicio[0] != '1'){
-        printf("Opcao invalida, digite uma opcao valida: \n");
-        scanf("%s",vicio);
+    vicio = 2;
+    while(vicio != 0 && vicio != 1){
+        scanf("%d",&vicio);
     }
     CLEAR;
 }
 int main(){
-    vicio[0] = '1';
-    while(vicio[0] == '1'){
+    while(vicio == 1){
         srand(time(0));//especificado pelo trabalho
         CLEAR;
         welcome();
