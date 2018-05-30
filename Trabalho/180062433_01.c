@@ -69,12 +69,12 @@ int vicio = 1;//Serve para, ao final de cada jogo, verificar se o usuario deseja
         #include <conio.h>
 #endif
 void welcome(){//Da as boas-vindas ao player.
-    int n;
+    char n;
     printf("Bem-Vindo ao River Raid, C Version =D.\nDigite 1 para continuar\n");
-    scanf("%d",&n);
+    scanf("%c",&n);
     while(n != 1){
         printf("Digite 1 e enter para continuar:\n");
-        scanf("%d",&n);
+        scanf("%c",&n);
     }
 }
 void opcao(int escolheu){//Funcao utilizada pela funcao menu, no momento so funciona para instrucoes. Colocada antes no codigo para evitar Warnings no terminal, ja que se ela for chamada por uma funcao antes de ser declarada ele reclama com "Implicit Declaration".
@@ -88,7 +88,7 @@ void opcao(int escolheu){//Funcao utilizada pela funcao menu, no momento so func
             CLEAR;
             printf("Comandos:\nw(move o personagem para cima e gasta 2 de combustivel).\ns(move o personagem para baixo e gasta 2 de combustivel).\nd(atira e gasta 3 de combustivel).\n");
             printf("Voce eh uma nave (+), inimigos(X) virao pela direita, bem como combustivel(F).\nEncostar em um inimigo finaliza o jogo, encostar em um (F) aumenta o seu combustivel em 40 unidades.\n");
-            printf("O seu tiro destroi tanto inimigos quanto combustivel, sendo que ao destruir um inimigo 50 ponto sao ganhos, entretanto, destruir um combustivel nao lhe proporciona nenhum beneficio.");
+            printf("O seu tiro destroi tanto inimigos quanto combustivel, sendo que ao destruir um inimigo 50 ponto sao ganhos, entretanto, destruir um combustivel nao lhe proporciona nenhum beneficio.\n");
             printf("ATENCAO: Apertar alguma tecla que nao seja um comando subtrai 2 de combustivel.\n");
             printf("Digite 1 para jogar, ou 2 para sair: ");
             scanf("%d",&jogar);
